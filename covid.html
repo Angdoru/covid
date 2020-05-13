@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <title>Coivd19</title>
+</head>
+
+<body>
+    <h1><a>3404김동주</a></h1>
+    <div id="grid">
+        <ol>
+            <li><a href="1.html">코로나 19란?</a></li>
+            <li><a href="covid.html">전세계 데이터</a></li>
+        </ol>
+        <div id="article">
+            <table width="500px" border="1px" cellspacing="0" cellpadding="8px">
+                <tr>
+                    <td colspan="2">
+                        <h2>
+                            <p style="text-align:center;">전세계 데이터</p>
+                            <h4>
+                                <p style="text-align:center;">(안 나올 경우 새로 고침)
+                            </h4>
+                            </p>
+                        </h2>
+                    </td>
+                </tr>
+                <tbody id="global"></tbody>
+            </table>
+            <script src="https://code.jquery.com/jquery-3.5.1.js"
+                integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+            <script>
+                $.ajax({
+                    method: "GET",
+                    url: "https://api.covid19api.com/summary ",
+                    dataType: "JSON",
+                    success: function (data) {
+                        console.log(data);
+                        console.log(data.Global);
+
+                        $.each(data.Global, function (key, value) {
+                            $("#global").append("<tr><td>" + key + "</td><td>" + value + "</td></tr>")
+                        });
+                    }
+                });
+            </script>
+        </div>
+    </div>
+</body>
+
+</html>
